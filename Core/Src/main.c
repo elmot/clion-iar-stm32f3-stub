@@ -98,16 +98,15 @@ int main(void)
   MX_SPI1_Init();
   MX_USB_PCD_Init();
   /* USER CODE BEGIN 2 */
-
+  cppMain();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  //unreachable loop
   while (1)
   {
     /* USER CODE END WHILE */
-    HAL_Delay(500);
-    HAL_GPIO_TogglePin(LD3_GPIO_Port,LD3_Pin);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
