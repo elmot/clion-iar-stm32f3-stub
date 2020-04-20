@@ -55,3 +55,8 @@ g1. Add empty CMakeLists.txt to the project
 4. Wait a bit
 5. Debugger works
 7. Enjoy!
+
+# Add C++ code
+
+There is a [pull request](https://github.com/elmot/clion-iar-stm32f3-stub/pull/2) 
+with necessary changes and a small example
