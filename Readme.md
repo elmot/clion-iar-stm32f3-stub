@@ -35,11 +35,10 @@ Then generate the project
 
 # CLion project adjustments
 
-g1. Add empty CMakeLists.txt to the project
-2. Open the project in CLion (ignore CMake errors reported)
-4. Write CMakeLists.txt [CMakeLists.txt](CMakeLists.txt)
-5. Add your code to the main() function
-6. Reset CMake caches
+1. Open the project in CLion (ignore CMake errors reported)
+2. Write _CMakeLists.txt_ as here [CMakeLists.txt](CMakeLists.txt)
+3. Add your code to the main() function
+4. Right-click _CMakeLists.txt_ in the project tree and click _Load CMake Project_
 
 # Debug
 
