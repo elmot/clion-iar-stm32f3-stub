@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 20,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "default",
+      "displayName": "Default Config",
+      "generator": "Unix Makefiles",
+      "binaryDir": "${sourceDir}/cmake-build-default",
+      "vendor": {
+        "jetbrains.com/clion": {
+          "toolchain": "IAR ARM"
+        }
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "default",
+      "configurePreset": "default"
+    }
+  ]
+}
