@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.20)
 set(CMAKE_SYSTEM_NAME Generic)
 SET(CMAKE_SYSTEM_VERSION 1)
 
@@ -6,18 +6,11 @@ project(clion-iar-stm32f3-stub C)
 
 set(CMAKE_C_STANDARD 11)
 
-set(COMMON_COMPILER_FLAGS "--cpu Cortex-M4F --dlib_config=normal")
-
 set(LINKER_SCRIPT "${CMAKE_SOURCE_DIR}/EWARM/stm32f303xc_flash.icf")
 
-set(COMMON_LINKER_FLAGS "--semihosting --config \"${LINKER_SCRIPT}\"")
+add_compile_options(--cpu Cortex-M4F --dlib_config=normal)
 
-
-set(CMAKE_C_FLAGS "${COMMON_COMPILER_FLAGS}")
-set(CMAKE_CXX_FLAGS "${COMMON_COMPILER_FLAGS}")
-
-set(CMAKE_C_LINK_FLAGS "${COMMON_LINKER_FLAGS}")
-set(CMAKE_CXX_LINK_FLAGS "${COMMON_LINKER_FLAGS}")
+add_link_options(--semihosting --config "${LINKER_SCRIPT}")
 
 file(GLOB_RECURSE SOURCES "Core/*.*"  "Drivers/*.*" EWARM/startup_stm32f303xc.s)
 
