@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.20)
 set(CMAKE_SYSTEM_NAME Generic)
-SET(CMAKE_SYSTEM_VERSION 1)
+set(CMAKE_SYSTEM_VERSION 1)
 
-project(clion-iar-stm32f3-stub C)
+project(clion-iar-stm32f3-stub C CXX)
 
 set(CMAKE_C_STANDARD 11)
 
