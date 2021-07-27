@@ -1,7 +1,7 @@
 
 # Preface
 
-We use STM32CubeMX because it’s very simple to use.   \
+We use STM32CubeMX because it’s very easy to use.   \
 If it’s not used(i.e. you do not use that or your chip is not STM32), just skip stage I and write your own startup code.
 
 
