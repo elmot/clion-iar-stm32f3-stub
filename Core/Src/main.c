@@ -19,6 +19,7 @@
 /* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
+#include <stdio.h>
 #include "main.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -58,7 +59,17 @@ static void MX_I2C1_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_USB_PCD_Init(void);
 /* USER CODE BEGIN PFP */
-
+/**
+  @brief         In-place 32 bit reversal function.
+  @param[in,out] pSrc        points to in-place buffer of unknown 32-bit data type
+  @param[in]     bitRevLen   bit reversal table length
+  @param[in]     pBitRevTab  points to bit reversal table
+  @return        none
+*/
+void arm_bitreversal_32(
+        uint32_t *pSrc,
+        uint16_t bitRevLen,
+        uint16_t *pBitRevTab);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -98,7 +109,6 @@ int main(void)
   MX_SPI1_Init();
   MX_USB_PCD_Init();
   /* USER CODE BEGIN 2 */
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -108,6 +118,7 @@ int main(void)
     /* USER CODE END WHILE */
     HAL_Delay(500);
     HAL_GPIO_TogglePin(LD3_GPIO_Port,LD3_Pin);
+    printf("arm_bitreversal_32 function address: 0x%08x",&arm_bitreversal_32);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
