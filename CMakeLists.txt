@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.22)
+cmake_minimum_required(VERSION 3.21)
 set(CMAKE_SYSTEM_NAME Generic)
 
 project(clion-iar-stm32f3-stub C CXX ASM)

@@ -2,26 +2,29 @@
   "version": 2,
   "cmakeMinimumRequired": {
     "major": 3,
-    "minor": 20,
+    "minor": 22,
     "patch": 0
   },
   "configurePresets": [
     {
-      "name": "default",
-      "displayName": "Default Config",
-      "generator": "Unix Makefiles",
+      "name": "iar-9",
+      "displayName": "IAR v9 for ARM",
+      "generator": "Ninja",
       "binaryDir": "${sourceDir}/cmake-build-default",
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "toolchain-iar-9-arm.cmake"
+      },
       "vendor": {
         "jetbrains.com/clion": {
-          "toolchain": "IAR ARM"
+          "toolchain": "CMake 3.22"
         }
       }
     }
   ],
   "buildPresets": [
     {
-      "name": "default",
-      "configurePreset": "default"
+      "name": "Default",
+      "configurePreset": "iar-9"
     }
   ]
 }

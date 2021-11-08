@@ -100,12 +100,10 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1)
-  {
+  /***** While loop is moved to cppMain()  *****/
     /* USER CODE END WHILE */
     /* USER CODE BEGIN 3 */
     cppMain();
-  }
   /* USER CODE END 3 */
 }
 

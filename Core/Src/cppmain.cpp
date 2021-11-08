@@ -1,7 +1,7 @@
 #include <main.h>
 #include <cstdio>
 
-extern "C" void cppMain(void);
+extern "C" [[noreturn]] void cppMain(void);
 
 /**
   @brief         In-place 32 bit reversal function.
@@ -13,10 +13,12 @@ extern "C" void cppMain(void);
 extern "C" void arm_bitreversal_32(
     uint32_t *pSrc,
     uint16_t bitRevLen,
-uint16_t *pBitRevTab);
+[[maybe_unused]] uint16_t *pBitRevTab);
 
-void cppMain() {
-    HAL_Delay(500);
-    HAL_GPIO_TogglePin(LD3_GPIO_Port,LD3_Pin);
-    printf("arm_bitreversal_32 function address: 0x%08x",&arm_bitreversal_32);
+[[noreturn]] void cppMain() {
+    printf("arm_bitreversal_32 function address: 0x%08x\n", &arm_bitreversal_32);
+    while(true) {
+        HAL_Delay(500);
+        HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin);
+    }
 }
