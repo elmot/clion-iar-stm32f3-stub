@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.21)
+cmake_minimum_required(VERSION 3.22)
 set(CMAKE_SYSTEM_NAME Generic)
 
 project(clion-iar-stm32f3-stub C CXX ASM)
@@ -35,5 +35,4 @@ add_definitions(-DUSE_HAL_DRIVER -DSTM32F303xC -DDEBUG)
 add_executable(clion_iar_stm32f3_stub ${SOURCES}
         ${LINKER_SCRIPT}
         Core/Src/arm_bitreversal2.S
-        Core/Src/cppmain.cpp
         EWARM/startup_stm32f303xc.s)
