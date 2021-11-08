@@ -7,13 +7,12 @@ If it’s not used(i.e. you do not use that or your chip is not STM32), just ski
 
 # Prerequisites
 
-*   Windows 7+
-*   Stm32CubeMX
-*   IAR Embedded WorkBench for ARM with a license
-*   MinGW installed
-*   STM32F3-Discovery
-*   OpenOCD 
-
+* CLion 2021.3+
+* Stm32CubeMX 6.3.0+
+* CMake 3.22 (3.22-rc2 as on 9-Nov-2021)
+* IAR Embedded WorkBench for ARM with a license
+* STM32F3-Discovery
+* OpenOCD
 
 # Create a project
 
@@ -27,18 +26,20 @@ Start Stm32CubeMX, open board selector, STM32F3-Discovery, and create the projec
 
 Then generate the project
 
-# Clion Build settings
+# Clion Toolchains settings
 
 ![Clion Settings Toolchains](docs/clion-settings-toolchain.png "Clion Settings Toolchains")
-
-![Clion Settings Toolchains](docs/clion-settings-cmake.png "Clion Settings Toolchains")
 
 # CLion project adjustments
 
 1. Open the project in CLion (ignore CMake errors reported)
 2. Write _CMakeLists.txt_ as here [CMakeLists.txt](CMakeLists.txt)
-3. Add your code to the main() function
-4. Right-click _CMakeLists.txt_ in the project tree and click _Load CMake Project_
+3. Use [toolchain file](toolchain-iar-9-arm.cmake) from this project. 
+Ensure that  IAR toolchain root location is correct. 
+4. Use [CMake presets file](CMakePresets.json) from this project
+5. Add your code to `main()` and `cppMain` functions
+6. Right-click _CMakeLists.txt_ in the project tree and click _Load CMake Project_
+7. Open *File | Settings | Build, Execution, Deployment | CMake* dialog and enable `Default ` profile
 
 # Debug
 
@@ -49,13 +50,9 @@ Then generate the project
     4. Click “Copy to Project & Use” \
         ![Run Configuration Settings](docs/run-config.png "Run Configuration Settings")
     5. Open OpenOCD config file and add to the very end \
-2. Set breakpoint to the very beginning of main()
-3. Click debug button
-4. Wait a bit
-5. Debugger works
+2. (Optional) Enable semihosting via [.gdbinit](.gdbinit)
+3. Set breakpoint to the very beginning of main()
+4. Click debug button
+5. Wait a bit
+6. Debugger works
 7. Enjoy!
-
-# Add C++ code
-
-There is a [pull request](https://github.com/elmot/clion-iar-stm32f3-stub/pull/2) 
-with necessary changes and a small example
