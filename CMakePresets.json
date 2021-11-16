@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "cmakeMinimumRequired": {
     "major": 3,
     "minor": 22,
@@ -11,9 +11,7 @@
       "displayName": "IAR v9 for ARM",
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/cmake-build-default",
-      "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "toolchain-iar-9-arm.cmake"
-      },
+      "toolchainFile": "toolchain-iar-9-arm.cmake",
       "vendor": {
         "jetbrains.com/clion": {
           "toolchain": "CMake 3.22"
