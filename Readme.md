@@ -1,20 +1,18 @@
-
 # Preface
 
-We use STM32CubeMX because it’s very easy to use.   \
-If it’s not used(i.e. you do not use that or your chip is not STM32), just skip stage I and write your own startup code.
-
+We use STM32CubeMX because it’s very easy to use and provides HAL and startup code.  
+If you do not use an STM32 or want to use STM32CubeMX just skip to the Clion Toolchains Settings stage and write your own startup code.
 
 # Prerequisites
 
 * CLion 2021.3+
 * Stm32CubeMX 6.3.0+
-* CMake 3.22 (3.22-rc2 as on 9-Nov-2021)
-* IAR Embedded WorkBench for ARM with a license
+* CMake 3.22.0+
+* IAR Embedded WorkBench for ARM 9.10+ (with license)
 * STM32F3-Discovery
 * OpenOCD
 
-# Create a project
+# Create A Project
 
 Start Stm32CubeMX, open board selector, STM32F3-Discovery, and create the project. Important changes: 
 
@@ -24,22 +22,36 @@ Start Stm32CubeMX, open board selector, STM32F3-Discovery, and create the projec
 
 ![Code Generator Settings](docs/project-3.png "Project Code Generation Settings")
 
-Then generate the project
+Then generate the project.
 
-# Clion Toolchains settings
+# Clion Toolchains Settings
 
 ![Clion Settings Toolchains](docs/clion-settings-toolchain.png "Clion Settings Toolchains")
 
-# CLion project adjustments
+1. In CLion, navigate to Settings | Build, Execution, Deployment | Toolchains  
+   On Windows, create a new MinGW toolchain or select an existing one. Use bundled CMake or configure the path to your installation.
 
-1. Open the project in CLion (ignore CMake errors reported)
-2. Write _CMakeLists.txt_ as here [CMakeLists.txt](CMakeLists.txt)
-3. Use [toolchain file](toolchain-iar-9-arm.cmake) from this project. 
-Ensure that  IAR toolchain root location is correct. 
-4. Use [CMake presets file](CMakePresets.json) from this project
-5. Add your code to `main()` and `cppMain` functions
-6. Right-click _CMakeLists.txt_ in the project tree and click _Load CMake Project_
-7. Open *File | Settings | Build, Execution, Deployment | CMake* dialog and enable `Default ` profile
+   *  Note: MinGW environment is required for you to be able to use the IAR compiler on Windows
+
+   On Linux, use a default local toolchain.
+2. Select the debugger: you can use the bundled GDB or a custom GDB version, for example, the debugger from GNU ARM Embedded Toolchain.
+
+# CLion CMake Settings
+
+1. Open the project in CLion (ignore CMake errors).
+2. Configure [CMakeLists.txt](CMakeLists.txt) for your project.
+3. Configure [toolchain-iar-9-arm.cmake](toolchain-iar-9-arm.cmake) to match your IAR installation path.  
+`set(IAR_TOOLCHAIN_ROOT "C:/Program Files/IAR Systems/Embedded Workbench 9.0/arm")`
+4. Configure [CMakePresets.json](CMakePresets.json) to use the toolchain created earlier.`"toolchain": "CMake 3.24"`
+5. Right-click _CMakeLists.txt_ in the project tree and click _Load CMake Project_
+6. In CLion, navigate to Settings | Build, Execution, Deployment | CMake and enable the `Default preset` profile
+   ![Clion Settings CMake](docs/clion-settings-cmake.png "Clion Settings CMake")
+7. Add your code to `main()` and `cppMain` functions
+
+Alternative to steps 4 - 6:
+In CLion, navigate to Settings | Build, Execution, Deployment | CMake  
+Create a new profile or select an existing one and Under `CMake options:` add:  
+`-DCMAKE_TOOLCHAIN_FILE=$CMakeProjectDir$/toolchain-iar-9-arm.cmake`
 
 # Debug
 
@@ -47,12 +59,13 @@ Ensure that  IAR toolchain root location is correct.
     1. Drop existing one(s)
     2. Create _OpenOCD Download & Run_
     3. Click “Assist”, find your board, or closest to your config
-    4. Click “Copy to Project & Use” \
-        ![Run Configuration Settings](docs/run-config.png "Run Configuration Settings")
-    5. Open OpenOCD config file and add to the very end \
-2. (Optional) Enable semihosting via [.gdbinit](.gdbinit)
+    4. Click “Copy to Project & Use”  
+        ![Run Configuration Settings](docs/clion-run-config.png "Run Configuration Settings")
+    5. Open OpenOCD config file and add to the very end  
+2. (Optional) Enable semi-hosting via [.gdbinit](.gdbinit)
 3. Set breakpoint to the very beginning of main()
 4. Click debug button
-5. Wait a bit
+5. Wait
 6. Debugger works
 7. Enjoy!
+
