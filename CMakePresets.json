@@ -14,7 +14,7 @@
       "toolchainFile": "toolchain-iar-9-arm.cmake",
       "vendor": {
         "jetbrains.com/clion": {
-          "toolchain": "CMake 3.22"
+          "toolchain": "CMake 3.24"
         }
       }
     }
