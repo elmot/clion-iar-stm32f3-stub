@@ -1,18 +1,18 @@
 # Preface
 
 We use STM32CubeMX because it’s very easy to use and provides HAL and startup code.  
-If you do not use an STM32 or want to use STM32CubeMX just skip to the Clion Toolchains Settings stage and write your own startup code.
+If you do not use an STM32 or want to use STM32CubeMX just skip the Create a Project stage and write your own startup code.
 
 # Prerequisites
 
-* CLion 2021.3+
-* Stm32CubeMX 6.3.0+
-* CMake 3.22.0+
-* IAR Embedded WorkBench for ARM 9.10+ (with license)
+* CLion 2022.2.3
+* Stm32CubeMX 6.6.1
+* CMake 3.24.2
+* IAR Embedded Workbench for ARM 9.30.1 (with license)
 * STM32F3-Discovery
 * OpenOCD
 
-# Create A Project
+# Create a Project
 
 Start Stm32CubeMX, open board selector, STM32F3-Discovery, and create the project. Important changes: 
 
@@ -29,11 +29,8 @@ Then generate the project.
 ![Clion Settings Toolchains](docs/clion-settings-toolchain.png "Clion Settings Toolchains")
 
 1. In CLion, navigate to Settings | Build, Execution, Deployment | Toolchains  
-   On Windows, create a new MinGW toolchain or select an existing one. Use bundled CMake or configure the path to your installation.
+   On Windows, create a new MinGW toolchain or select an existing one. Use bundled MinGW and CMake or configure the path to your installation.
 
-   *  Note: MinGW environment is required for you to be able to use the IAR compiler on Windows
-
-   On Linux, use a default local toolchain.
 2. Select the debugger: you can use the bundled GDB or a custom GDB version, for example, the debugger from GNU ARM Embedded Toolchain.
 
 # CLion CMake Settings
